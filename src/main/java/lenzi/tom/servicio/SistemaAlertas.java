@@ -4,6 +4,7 @@ import lenzi.tom.modelo.Alerta;
 import lenzi.tom.modelo.Tema;
 import lenzi.tom.modelo.TipoAlerta;
 import lenzi.tom.modelo.Usuario;
+import lenzi.tom.ordenamiento.Ordenamiento;
 
 import java.util.*;
 
@@ -12,9 +13,11 @@ public class SistemaAlertas {
     private final Map<Integer, Usuario> usuarios;
     private final List<Tema> temas;
 
-    public SistemaAlertas() {
+    private Ordenamiento ordenamientoAlertas;
+    public SistemaAlertas(Ordenamiento ordenamiento) {
         this.temas = new ArrayList<>();
         this.usuarios = new HashMap<>();
+        this.ordenamientoAlertas = ordenamiento;
     }
 
     public void registrarUsuario(Usuario u) {
@@ -67,7 +70,7 @@ public class SistemaAlertas {
         }
 
 
-        return ordenarAlertas(alertasNoLeidas);
+        return ordenamientoAlertas.ordenarAlertas(alertasNoLeidas);
     }
 
     public List<Alerta> obtenerAlertasPorTema(Tema t) {
@@ -80,23 +83,8 @@ public class SistemaAlertas {
 
         }
 
-        return ordenarAlertas(alertasPorTema);
+        //return ordenarAlertas(alertasPorTema);
+        return ordenamientoAlertas.ordenarAlertas(alertasPorTema);
     }
-
-
-    public List<Alerta> ordenarAlertas(List<Alerta> alertas) {
-        LinkedList<Alerta> alertasOrdenadas = new LinkedList<>();
-
-        for (Alerta a : alertas) {
-            if (a.getTipo() == TipoAlerta.URGENTE) {
-                alertasOrdenadas.addFirst(a);
-            } else {
-                alertasOrdenadas.addLast(a);
-            }
-        }
-
-        return alertasOrdenadas;
-    }
-
 
 }

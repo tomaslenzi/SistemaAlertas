@@ -1,5 +1,7 @@
 package lenzi.tom.servicio;
 
+import lenzi.tom.ordenamiento.Ordenamiento;
+import lenzi.tom.ordenamiento.OrdenamientoAlertas;
 import org.junit.Test;
 import lenzi.tom.modelo.Alerta;
 import lenzi.tom.servicio.SistemaAlertas;
@@ -17,18 +19,20 @@ public class SistemaAlertasTest {
 
     @Test
     public void registrarUsuarioTest(){
-        SistemaAlertas sistema = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sa = new SistemaAlertas(OrdenamientoAlertas);
         Usuario usuario = new Usuario(1);
 
-        sistema.registrarUsuario(usuario);
+        sa.registrarUsuario(usuario);
 
-        assertEquals(1, sistema.getUsuarios().size());
-        assertEquals(usuario, sistema.getUsuarios().get(0));
+        assertEquals(1, sa.getUsuarios().size());
+        assertEquals(usuario, sa.getUsuarios().get(0));
     }
 
     @Test
     public void registrarTemaTest(){
-        SistemaAlertas sistema = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sistema = new SistemaAlertas(OrdenamientoAlertas);
         Tema tema = new Tema("t1", "tema test");
         sistema.registrarTema(tema);
 
@@ -40,7 +44,8 @@ public class SistemaAlertasTest {
 
     @Test
     public void enviarAlertaTemaTodosUsuariosTest(){
-        SistemaAlertas sa = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sa = new SistemaAlertas(OrdenamientoAlertas);
         Usuario u1 = new Usuario(1);
         Usuario u2 = new Usuario(2);
         Tema t1 = new Tema("t1","tema test 1");
@@ -68,8 +73,8 @@ public class SistemaAlertasTest {
 
     @Test
     public void enviarAlertaTemaUsuarioEspecificoTest(){
-
-        SistemaAlertas sa = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sa = new SistemaAlertas(OrdenamientoAlertas);
         Usuario u1 = new Usuario(1);
         Usuario u2 = new Usuario(2);
 
@@ -99,7 +104,8 @@ public class SistemaAlertasTest {
 
     @Test
     public void obtenerAlertasNoLeidasUsuarioTest(){
-        SistemaAlertas sa = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sa = new SistemaAlertas(OrdenamientoAlertas);
         Usuario u1 = new Usuario(1);
 
         Tema t1 = new Tema("t1","tema test 1");
@@ -129,8 +135,8 @@ public class SistemaAlertasTest {
 
     @Test
     public void obtenerAlertasPorTemaTest(){
-
-        SistemaAlertas sa = new SistemaAlertas();
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas sa = new SistemaAlertas(OrdenamientoAlertas);
 
         Tema t1 = new Tema("t1", "tema 1");
         Tema t2 = new Tema("t1", "tema 1");
@@ -157,28 +163,6 @@ public class SistemaAlertasTest {
 
     }
 
-    @Test
-    public void ordenarAlertasTest(){
-        Alerta a1 = new Alerta(TipoAlerta.URGENTE, "U1");
-        Alerta a2 = new Alerta(TipoAlerta.INFORMATIVA,"I1");
-        Alerta a3 = new Alerta(TipoAlerta.URGENTE, "U2");
-        Alerta a4 = new Alerta(TipoAlerta.INFORMATIVA,"I2");
 
-        List<Alerta> alertas = new ArrayList<>();
-        alertas.add(a1);
-        alertas.add(a2);
-        alertas.add(a3);
-        alertas.add(a4);
-
-        SistemaAlertas sistema = new SistemaAlertas();
-        List<Alerta> alertasOrdenadas = sistema.ordenarAlertas(alertas);
-
-        assertEquals(4, alertasOrdenadas.size());
-        assertEquals(a3, alertasOrdenadas.get(0));
-        assertEquals(a1, alertasOrdenadas.get(1));
-        assertEquals(a2, alertasOrdenadas.get(2));
-        assertEquals(a4, alertasOrdenadas.get(3));
-
-    }
 
 }

@@ -1,6 +1,8 @@
 package lenzi.tom;
 
 import lenzi.tom.modelo.Alerta;
+import lenzi.tom.ordenamiento.Ordenamiento;
+import lenzi.tom.ordenamiento.OrdenamientoAlertas;
 import lenzi.tom.servicio.SistemaAlertas;
 import lenzi.tom.modelo.Tema;
 import lenzi.tom.modelo.Usuario;
@@ -8,11 +10,12 @@ import lenzi.tom.modelo.TipoAlerta;
 
 public class Main {
     public static void main(String[] args) {
-        SistemaAlertas s1 = new SistemaAlertas();
+
+        Ordenamiento OrdenamientoAlertas = new OrdenamientoAlertas();
+        SistemaAlertas s1 = new SistemaAlertas(OrdenamientoAlertas);
 
         Tema t1 = new Tema("t1", "tema1");
         Tema t2 = new Tema("t2", "tema2");
-//I1,I2,U1,I3,U2,I4 se ordenarán de la siguiente forma --> U2,U1,I1,I2,I3,I4
 
         Alerta a1 = new Alerta(TipoAlerta.INFORMATIVA, "I1");
         Alerta a2 = new Alerta(TipoAlerta.INFORMATIVA, "I2");
@@ -51,7 +54,8 @@ public class Main {
         u1.marcarAlertaComoLeida(a5);
 
 
-
+        //I1,I2,U1,I3,U2,I4 se ordenarán de la siguiente forma --> U2,U1,I1,I2,I3,I4
+        
         System.out.println("alertas no leidas: " + s1.obtenerAlertasNoLeidas(u1));
         System.out.println("alertas por tema: " + s1.obtenerAlertasPorTema(t1));
 
