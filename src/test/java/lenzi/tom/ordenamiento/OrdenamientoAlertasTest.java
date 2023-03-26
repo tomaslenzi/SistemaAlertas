@@ -2,7 +2,6 @@ package lenzi.tom.ordenamiento;
 
 import lenzi.tom.modelo.Alerta;
 import lenzi.tom.modelo.TipoAlerta;
-import lenzi.tom.servicio.SistemaAlertas;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -23,7 +23,6 @@ public class UsuarioTest {
         assertTrue(u1.getTemasDeInteres().contains(t1));
         assertTrue(u1.getTemasDeInteres().contains(t2));
 
-
     }
 
     @Test
@@ -42,6 +41,7 @@ public class UsuarioTest {
 
     }
 
+    @Test
     public void eliminarAlertaTest() {
         Usuario u1 = new Usuario(1);
         Alerta a1 = new Alerta(TipoAlerta.URGENTE,"U1");

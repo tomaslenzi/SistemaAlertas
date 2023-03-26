@@ -55,7 +55,7 @@ public class Main {
 
 
         //I1,I2,U1,I3,U2,I4 se ordenarán de la siguiente forma --> U2,U1,I1,I2,I3,I4
-        
+
         System.out.println("alertas no leidas: " + s1.obtenerAlertasNoLeidas(u1));
         System.out.println("alertas por tema: " + s1.obtenerAlertasPorTema(t1));
 
