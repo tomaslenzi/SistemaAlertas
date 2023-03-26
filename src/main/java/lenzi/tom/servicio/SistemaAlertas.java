@@ -83,7 +83,6 @@ public class SistemaAlertas {
 
         }
 
-        //return ordenarAlertas(alertasPorTema);
         return ordenamientoAlertas.ordenarAlertas(alertasPorTema);
     }
 
